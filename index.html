@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Jack Clayton In-Season Program - VLVL Athletics</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+  
+  :root { 
+    --primary-black: #1A1A1A;
+    --primary-dark: #2C3E3A;
+    --primary-yellow: #F5C842;
+    --accent-yellow: #FFD700;
+    --text-light: #FFFFFF;
+    --text-gray: #B0B0B0;
+    --card-bg: #2A2A2A;
+    --card-border: #3A3A3A;
+    --success: #4CAF50;
+    --warning: #FF5722;
+    --rest-color: #4A90E2;
+    --shadow: rgba(0,0,0,0.5);
+    --glow-yellow: rgba(245, 200, 66, 0.5);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--primary-black);
+    min-height: 100vh;
+    color: var(--text-light);
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(245, 200, 66, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(245, 200, 66, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--card-bg) 0%, #1f1f1f 100%);
+    padding: 20px 0;
+    border-bottom: 2px solid var(--primary-yellow);
+    box-shadow: 0 10px 30px var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .logo {
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(245, 200, 66, 0.3));
+  }
+  
+  .athlete-info {
+    border-left: 2px solid var(--primary-yellow);
+    padding-left: 20px;
+  }
+  
+  .athlete-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2em;
+    color: var(--primary-yellow);
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px var(--glow-yellow);
+  }
+  
+  .athlete-details {
+    color: var(--text-gray);
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+  
+  /* Navigation */
+  .nav-container {
+    background: rgba(42, 42, 42, 0.95);
+    border-bottom: 1px solid var(--card-border);
+    padding: 10px 0;
+    position: sticky;
+    top: 80px;
+    z-index: 99;
+    backdrop-filter: blur(10px);
+  }
+  
+  .nav-tabs {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-yellow) var(--card-bg);
+  }
+  
+  .nav-tab {
+    font-family: 'Bebas Neue', sans-serif;
+    background: var(--card-bg);
+    color: var(--text-gray);
+    border: 1px solid var(--card-border);
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  
+  .nav-tab:hover {
+    background: rgba(245, 200, 66, 0.1);
+    border-color: var(--primary-yellow);
+    transform: translateY(-2px);
+  }
+  
+  .nav-tab.active {
+    background: var(--primary-yellow);
+    color: var(--primary-black);
+    border-color: var(--primary-yellow);
+    box-shadow: 0 0 15px var(--glow-yellow);
+    font-weight: bold;
+  }
+  
+  /* Content Container */
+  .content-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Sections */
+  .section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .section.active {
+    display: block;
+  }
+  
+  /* Cards */
+  .card {
+    background: linear-gradient(135deg, var(--card-bg) 0%, #222 100%);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-yellow), transparent);
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 20px rgba(245, 200, 66, 0.1);
+  }
+  
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2em;
+    color: var(--primary-yellow);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px var(--glow-yellow);
+  }
+  
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .stat-card {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--primary-yellow);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5em;
+    color: var(--primary-yellow);
+    text-shadow: 0 0 10px var(--glow-yellow);
+  }
+  
+  .stat-label {
+    color: var(--text-gray);
+    font-size: 0.9em;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Day Cards */
+  .day-card {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .day-card:hover {
+    border-color: var(--primary-yellow);
+    box-shadow: 0 0 20px rgba(245, 200, 66, 0.1);
+  }
+  
+  .day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--card-border);
+  }
+  
+  .day-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8em;
+    color: var(--primary-yellow);
+    letter-spacing: 1px;
+  }
+  
+  .day-type {
+    background: var(--primary-yellow);
+    color: var(--primary-black);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Exercise List */
+  .exercise-group {
+    margin-bottom: 20px;
+  }
+  
+  .exercise-group-title {
+    color: var(--accent-yellow);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  
+  .exercise-item {
+    background: rgba(245, 200, 66, 0.05);
+    border-left: 3px solid var(--primary-yellow);
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .exercise-item:hover {
+    background: rgba(245, 200, 66, 0.1);
+    transform: translateX(5px);
+  }
+  
+  .exercise-name {
+    color: var(--text-light);
+    font-weight: 500;
+  }
+  
+  .exercise-details {
+    color: var(--primary-yellow);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+  }
+  
+  /* Nutrition Section */
+  .meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .meal-card {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .meal-time {
+    color: var(--primary-yellow);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  
+  .meal-content {
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  
+  /* Lists */
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  
+  li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-yellow);
+    font-weight: bold;
+  }
+  
+  /* Info Boxes */
+  .info-box {
+    background: linear-gradient(135deg, rgba(245, 200, 66, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+    border: 1px solid rgba(245, 200, 66, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  .info-box h3 {
+    color: var(--primary-yellow);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  
+  /* Warning Box */
+  .warning-box {
+    background: linear-gradient(135deg, rgba(255, 87, 34, 0.1) 0%, rgba(255, 87, 34, 0.05) 100%);
+    border: 1px solid var(--warning);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  
+  .warning-box h3 {
+    color: var(--warning);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .athlete-info {
+      border-left: none;
+      border-top: 2px solid var(--primary-yellow);
+      padding-left: 0;
+      padding-top: 15px;
+      margin-top: 15px;
+    }
+    
+    .nav-container {
+      top: 140px;
+    }
+    
+    .stats-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .day-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+    
+    .exercise-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 8px;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--card-bg);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary-yellow);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-yellow);
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-content">
+    <div class="logo-section">
+      <div class="logo" style="width: 120px; height: 60px; background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--accent-yellow) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 2em; color: var(--primary-black); letter-spacing: 3px; box-shadow: 0 0 20px var(--glow-yellow);">VLVL</div>
+      <div class="athlete-info">
+        <div class="athlete-name">JACK CLAYTON</div>
+        <div class="athlete-details">16 YRS • HS OL • 223 LB • IN-SEASON PROGRAM</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="nav-container">
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSection('overview')">OVERVIEW</button>
+    <button class="nav-tab" onclick="showSection('weekly')">WEEKLY PROGRAM</button>
+    <button class="nav-tab" onclick="showSection('extra-work')">EXTRA WORK</button>
+    <button class="nav-tab" onclick="showSection('nutrition')">NUTRITION</button>
+    <button class="nav-tab" onclick="showSection('recovery')">RECOVERY</button>
+    <button class="nav-tab" onclick="showSection('daily-flow')">DAILY FLOW</button>
+    <button class="nav-tab" onclick="showSection('bulletproofing')">BULLETPROOFING</button>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="content-container">
+
+  <!-- Overview Section -->
+  <section id="overview" class="section active">
+    <div class="card">
+      <h2 class="card-title">ATHLETE PROFILE</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">223 LB</div>
+          <div class="stat-label">Current Weight</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">220 LB</div>
+          <div class="stat-label">Target Weight</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">16</div>
+          <div class="stat-label">Age</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">HS OL</div>
+          <div class="stat-label">Position</div>
+        </div>
+      </div>
+      
+      <div class="info-box">
+        <h3>PRIMARY GOALS</h3>
+        <ul>
+          <li>Add explosive power and pop off the line</li>
+          <li>Improve mobility and movement quality</li>
+          <li>Maintain strength while managing in-season recovery</li>
+          <li>Support ankle and hip recovery from surgeries</li>
+        </ul>
+      </div>
+      
+      <div class="warning-box">
+        <h3>INJURY HISTORY & HOTSPOTS</h3>
+        <ul>
+          <li>Both ankles surgery (summer) - CLEARED</li>
+          <li>Hip surgery (past) - CLEARED</li>
+          <li>Focus areas: Ankles, calves, hip internal/external rotation</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title">KEY TRAINING TERMS</h2>
+      <ul>
+        <li><strong style="color: var(--primary-yellow);">RPE:</strong> Rate of Perceived Exertion. RPE 7 = ~3 reps left in tank. RPE 10 = maximum effort</li>
+        <li><strong style="color: var(--primary-yellow);">CNS:</strong> Central Nervous System - your body's electrical system for explosiveness</li>
+        <li><strong style="color: var(--primary-yellow);">Tempo 3-1-2:</strong> 3 seconds lowering, 1 second pause, 2 seconds lifting</li>
+        <li><strong style="color: var(--primary-yellow);">Volume:</strong> Sets × Reps × Weight</li>
+        <li><strong style="color: var(--primary-yellow);">Intensity:</strong> Percentage of your maximum</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title">AUTO-ADJUST RULES</h2>
+      <ul>
+        <li><strong style="color: var(--warning);">Sleep < 8.5 hours:</strong> Drop intensity by 15% and skip any jumps</li>
+        <li><strong style="color: var(--warning);">Stress Level = 5:</strong> Full recovery day, breathwork twice, easy walk, mobility only</li>
+        <li><strong style="color: var(--warning);">New Pain:</strong> Remove the trigger exercise. Use mid-range isometric holds 30-45s pain-free</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Weekly Program Section -->
+  <section id="weekly" class="section">
+    <div class="card">
+      <h2 class="card-title">WEEKLY SCHEDULE</h2>
+      
+      <!-- Monday -->
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">MONDAY - EXTRA DAY</div>
+          <div class="day-type">Mobility + Accessories</div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Practice: Light</div>
+          <ul>
+            <li>Pre: Daily Vault + easy nose-only breathing</li>
+            <li>Post: OL Drills 15 min (pick any 2), then mobility</li>
+          </ul>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Weight Room (25-35 min)</div>
+          <div class="exercise-item">
+            <span class="exercise-name">Trap-bar RDL</span>
+            <span class="exercise-details">3×8 @ RPE 6, Tempo 3-1-1</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">DB Bench</span>
+            <span class="exercise-details">3×10 @ RPE 6</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Split-squat to box</span>
+            <span class="exercise-details">2×8/side slow</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Chest-supported row</span>
+            <span class="exercise-details">3×10</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Sled backward drags</span>
+            <span class="exercise-details">4×25 yd light</span>
+          </div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Bulletproofing</div>
+          <ul>
+            <li>Adductors + Hip IR/ER block</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Tuesday -->
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">TUESDAY - GAME-3</div>
+          <div class="day-type">Heavy Neural</div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Practice: Hard</div>
+          <ul>
+            <li>Pre: Activation breathwork + Daily Vault</li>
+            <li>Post: OL Drills 15 min. Mobility only</li>
+          </ul>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Extra Work (10-15 min)</div>
+          <div class="exercise-item">
+            <span class="exercise-name">Med ball chest pass</span>
+            <span class="exercise-details">4×5</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Med ball slams</span>
+            <span class="exercise-details">4×5</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">KB swing</span>
+            <span class="exercise-details">3×15</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">SL DB RDL</span>
+            <span class="exercise-details">2×12/side</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Band pull-through</span>
+            <span class="exercise-details">2×25</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Nordic eccentric</span>
+            <span class="exercise-details">3×5</span>
+          </div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Bulletproofing</div>
+          <ul>
+            <li>Ankle DF + Calves block</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Wednesday -->
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">WEDNESDAY - GAME-2</div>
+          <div class="day-type">Speed</div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Practice: Hard</div>
+          <ul>
+            <li>Pre: Activation breathwork + Daily Vault</li>
+            <li>Post: OL Drills 15 min. Light mobility</li>
+          </ul>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Extra Work (10-15 min)</div>
+          <div class="exercise-item">
+            <span class="exercise-name">Pallof press</span>
+            <span class="exercise-details">3×12/side</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Suitcase carry</span>
+            <span class="exercise-details">3×40 yd/side</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Face pull</span>
+            <span class="exercise-details">3×25</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">DB shoulder complex</span>
+            <span class="exercise-details">3×8</span>
+          </div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Bulletproofing</div>
+          <ul>
+            <li>Foot/arch + balance block</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Thursday -->
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">THURSDAY - GAME-1</div>
+          <div class="day-type">Activation Only</div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Practice: Walkthrough</div>
+          <ul>
+            <li>Pre: Box breathing 4-4-4-4 + Daily Vault</li>
+            <li>Post: 10-15 min light mobility, no lifting</li>
+          </ul>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">No Weight Room Today</div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Bulletproofing</div>
+          <ul>
+            <li>Ankle DF + Calves block, easy pace</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Friday -->
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">FRIDAY - GAME DAY</div>
+          <div class="day-type" style="background: var(--success);">GAME TIME</div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Locker Room Protocol</div>
+          <ul>
+            <li>Visualization 5 min</li>
+            <li>Activation breathwork</li>
+            <li>Dynamic warm-up</li>
+          </ul>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Nutrition Timing</div>
+          <ul>
+            <li><strong>3 hr pre-kick:</strong> Complex carbs + 30g protein</li>
+            <li><strong>1 hr pre:</strong> 20g whey + simple carbs</li>
+            <li><strong>Halftime:</strong> Electrolytes + 15g aminos</li>
+            <li><strong>Postgame:</strong> 40g protein + easy carbs</li>
+          </ul>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Creatine Protocol</div>
+          <ul>
+            <li>5g AM + 25g 3hr pre-kick</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Saturday -->
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">SATURDAY - GAME+1</div>
+          <div class="day-type">Recovery</div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Recovery Protocol</div>
+          <ul>
+            <li>Restorative breathwork</li>
+            <li>Easy mobility 15-20 min</li>
+          </ul>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Optional Isometrics (30 min)</div>
+          <div class="exercise-item">
+            <span class="exercise-name">Mid-thigh pull ISO vs rack</span>
+            <span class="exercise-details">4×30s @ hard brace</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Split-squat ISO mid-range</span>
+            <span class="exercise-details">3×30s/side</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Slant-board calf ISO</span>
+            <span class="exercise-details">3×30s straight + 3×30s bent</span>
+          </div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Bulletproofing</div>
+          <ul>
+            <li>Adductors + Hip IR/ER block</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Sunday -->
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">SUNDAY - GAME+2</div>
+          <div class="day-type">Reload</div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Optional Field Tempo</div>
+          <ul>
+            <li>8-10 × 60 yd strides, easy</li>
+          </ul>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Weight Room (25-35 min)</div>
+          <div class="exercise-item">
+            <span class="exercise-name">Trap-bar deadlift</span>
+            <span class="exercise-details">4×3 @ RPE 7, fast concentric</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Bench</span>
+            <span class="exercise-details">4×5 @ RPE 7</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Row</span>
+            <span class="exercise-details">3×8</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-name">Split-squat</span>
+            <span class="exercise-details">2×6/side</span>
+          </div>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Extra Work (10-15 min)</div>
+          <ul>
+            <li>Posterior Chain: SL DB RDL 2×12/side, Band pull-through 2×25</li>
+            <li>Upper Armor: Face pull 3×25, Triceps + Biceps 2×20</li>
+          </ul>
+        </div>
+        <div class="exercise-group">
+          <div class="exercise-group-title">Bulletproofing</div>
+          <ul>
+            <li>Foot/arch + balance block</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Extra Work Section -->
+  <section id="extra-work" class="section">
+    <div class="card">
+      <h2 class="card-title">EXTRA WORK ROTATION</h2>
+      
+      <div class="info-box">
+        <h3>ROTATION SCHEDULE</h3>
+        <ul>
+          <li><strong>Game-3 (Tuesday):</strong> Power + Posterior Chain</li>
+          <li><strong>Game-2 (Wednesday):</strong> Core + Upper Armor</li>
+          <li><strong>Game+2 (Sunday):</strong> Posterior Chain + Upper Armor</li>
+        </ul>
+        <p style="margin-top: 15px; color: var(--text-gray);">Short on time? Pick 1 bucket that solves your biggest need that day.</p>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">A) POSTERIOR CHAIN</div>
+          <div class="day-type">Hip-Dominant, Ankle-Smart</div>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Reverse Hyper</span>
+          <span class="exercise-details">3×20</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Nordic Eccentric</span>
+          <span class="exercise-details">3×5 (5s down, push up)</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Single-Leg DB RDL</span>
+          <span class="exercise-details">2×12/side</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Band Pull-Through</span>
+          <span class="exercise-details">2×25</span>
+        </div>
+        <p style="margin-top: 15px; color: var(--text-gray);">Isometric swap (ankle flare): Mid-thigh ISO vs rack 3×20-30s</p>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">B) CORE</div>
+          <div class="day-type">Brace + Anti-Rotation</div>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Pallof Press</span>
+          <span class="exercise-details">3×12/side</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Suitcase Carry</span>
+          <span class="exercise-details">3×40 yd/side</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Ab Wheel</span>
+          <span class="exercise-details">3×8-12</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Hanging Knee Raise</span>
+          <span class="exercise-details">2×15</span>
+        </div>
+        <p style="margin-top: 15px; color: var(--text-gray);">Isometric swap: Tall-kneel anti-rotation hold 3×20-30s</p>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">C) UPPER ARMOR</div>
+          <div class="day-type">Shoulders/Elbows/Neck</div>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Face Pull</span>
+          <span class="exercise-details">3×25</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">DB Shoulder Complex</span>
+          <span class="exercise-details">3×8 (lateral → front → press)</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Triceps + Biceps</span>
+          <span class="exercise-details">3×20 each</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Neck Harness</span>
+          <span class="exercise-details">2×20</span>
+        </div>
+        <p style="margin-top: 15px; color: var(--text-gray);">No harness? Partner resisted nods 3×12</p>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">D) POWER</div>
+          <div class="day-type">Low-Impact, Ankle-Friendly</div>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Med-Ball Slam</span>
+          <span class="exercise-details">4×5</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Med-Ball Chest Pass</span>
+          <span class="exercise-details">4×5</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">KB Swing</span>
+          <span class="exercise-details">3×15</span>
+        </div>
+        <div class="warning-box" style="margin-top: 15px;">
+          <h3 style="font-size: 1.2em;">IF PERFECT ANKLES TODAY:</h3>
+          <ul>
+            <li>Box Jump 4×3 (step-down only)</li>
+            <li>OR Trap-Bar Jump Shrug 3×3 @ ~30%</li>
+            <li>Skip jumps if sleep < 8.5 hr or any ankle pain</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nutrition Section -->
+  <section id="nutrition" class="section">
+    <div class="card">
+      <h2 class="card-title">DAILY NUTRITION ANCHORS</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">223g</div>
+          <div class="stat-label">Daily Protein (1g/lb)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">134 oz</div>
+          <div class="stat-label">Daily Hydration Base</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">20g</div>
+          <div class="stat-label">Daily Creatine</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">4-6</div>
+          <div class="stat-label">Protein Feeds/Day</div>
+        </div>
+      </div>
+      
+      <div class="info-box">
+        <h3>THORNE SUPPLEMENT STACK</h3>
+        <ul>
+          <li><strong>D-5000:</strong> 1 cap AM</li>
+          <li><strong>Super EPA:</strong> 2-3 caps with meals</li>
+          <li><strong>Amino Complex:</strong> Around training</li>
+          <li><strong>Beta Alanine-SR:</strong> 2 tabs 2×/day</li>
+          <li><strong>Catalyte:</strong> 1-2 scoops during/after practice</li>
+          <li><strong>Curcumin:</strong> 4 caps with meals</li>
+          <li><strong>Magnesium Bisglycinate:</strong> 1 scoop at bedtime</li>
+        </ul>
+        <p style="margin-top: 15px; color: var(--warning);">Get parent + AT coach approval before starting.</p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title">SAMPLE DAILY MEALS</h2>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">TRAINING DAY (HIGH CARB)</div>
+        </div>
+        <div class="meal-grid">
+          <div class="meal-card">
+            <div class="meal-time">BREAKFAST</div>
+            <div class="meal-content">Oats with milk, whey mixed in, berries, peanut butter</div>
+          </div>
+          <div class="meal-card">
+            <div class="meal-time">SNACK 1</div>
+            <div class="meal-content">PB&J + cheese stick</div>
+          </div>
+          <div class="meal-card">
+            <div class="meal-time">LUNCH</div>
+            <div class="meal-content">Pasta, meat sauce, side salad</div>
+          </div>
+          <div class="meal-card">
+            <div class="meal-time">PRE-PRACTICE</div>
+            <div class="meal-content">Rice cakes + honey + whey in water (60-90 min before)</div>
+          </div>
+          <div class="meal-card">
+            <div class="meal-time">POST-WORKOUT</div>
+            <div class="meal-content">40g whey + fruit</div>
+          </div>
+          <div class="meal-card">
+            <div class="meal-time">DINNER</div>
+            <div class="meal-content">Steak, white rice, broccoli</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">GAME DAY TIMING</div>
+        </div>
+        <ul>
+          <li><strong>3 hours pre-kick:</strong> Complex carbs + 30g protein (chicken, rice, roll, applesauce)</li>
+          <li><strong>1 hour pre:</strong> 20g whey + simple carbs (sports drink or rice cakes + honey)</li>
+          <li><strong>Halftime:</strong> Electrolytes + 15g aminos (Amino Complex)</li>
+          <li><strong>Postgame:</strong> 40g protein + easy carbs (chocolate milk + banana)</li>
+          <li><strong>Creatine protocol:</strong> 5g AM + 25g 3hr pre-kick</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recovery Section -->
+  <section id="recovery" class="section">
+    <div class="card">
+      <h2 class="card-title">RECOVERY PROTOCOLS</h2>
+      
+      <div class="info-box">
+        <h3>SLEEP OPTIMIZATION</h3>
+        <ul>
+          <li>Target: 8.5+ hours per night</li>
+          <li>Room temperature: 65-68°F</li>
+          <li>Morning sun exposure: 10 min within 30 min of waking</li>
+          <li>Pre-bed routine: Guided visualization, 10 min soft tissue, magnesium, phone away</li>
+        </ul>
+      </div>
+      
+      <div class="info-box">
+        <h3>STRESS MANAGEMENT</h3>
+        <ul>
+          <li>Stress level 4-5 → Double breathwork sessions</li>
+          <li>Add 2-4 min cold exposure</li>
+          <li>Cut training volume by 20%</li>
+          <li>Focus on restorative activities</li>
+        </ul>
+      </div>
+      
+      <div class="warning-box">
+        <h3>RED FLAGS - IMMEDIATE ACTION</h3>
+        <ul>
+          <li><strong>Weight swing >5 lb in 24hr:</strong> Increase hydration, add salt, increase carbs</li>
+          <li><strong>New ankle pain:</strong> Switch to isometric holds at pain-free angle 30-45s, notify AT immediately</li>
+          <li><strong>Sleep <6 hours:</strong> Recovery day only, no heavy lifting</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title">FOCUSED MOBILITY (KELLY STARRETT INSPIRED)</h2>
+      <p style="margin-bottom: 20px; color: var(--text-gray);">Use these 5-10 min add-ons anywhere:</p>
+      
+      <div class="exercise-item">
+        <span class="exercise-name">Banded ankle distraction</span>
+        <span class="exercise-details">2×1 min/side</span>
+      </div>
+      <div class="exercise-item">
+        <span class="exercise-name">Heel-to-wall test</span>
+        <span class="exercise-details">2×8/side</span>
+      </div>
+      <div class="exercise-item">
+        <span class="exercise-name">Kneeling toe stretch</span>
+        <span class="exercise-details">2×45s</span>
+      </div>
+      <div class="exercise-item">
+        <span class="exercise-name">Calf soft tissue with roller</span>
+        <span class="exercise-details">90s each</span>
+      </div>
+      <div class="exercise-item">
+        <span class="exercise-name">Eccentric calf lowers</span>
+        <span class="exercise-details">2×12</span>
+      </div>
+      <div class="exercise-item">
+        <span class="exercise-name">Adductor rock-backs</span>
+        <span class="exercise-details">2×12/side</span>
+      </div>
+      <div class="exercise-item">
+        <span class="exercise-name">90/90 transitions</span>
+        <span class="exercise-details">2×10</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Daily Flow Section -->
+  <section id="daily-flow" class="section">
+    <div class="card">
+      <h2 class="card-title">VLV DAILY FLOW</h2>
+      <p style="margin-bottom: 20px; color: var(--text-gray);">Follow this routine every single day for optimal results:</p>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">PRE-PRACTICE (30 MIN)</div>
+        </div>
+        <ul>
+          <li>VLV Breathwork app session</li>
+          <li>VLV Daily Vault review</li>
+          <li>Focus on 1-2 technical cues for the day</li>
+        </ul>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">POST-PRACTICE (60 MIN WINDOW)</div>
+        </div>
+        <ul>
+          <li>VLV OL Drills 15 min (pick 2 from Library)</li>
+          <li>Protein shake within 30 minutes</li>
+          <li>Easy carbs for recovery</li>
+          <li>Breathwork + mobility only (no heavy lifting)</li>
+        </ul>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">WEIGHT ROOM</div>
+        </div>
+        <ul>
+          <li>Complete team total-body lift first</li>
+          <li>Add Extra Work 10-15 min (see rotation)</li>
+          <li>Optional: Bulletproofing block 20 min</li>
+        </ul>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">PRE-BED ROUTINE</div>
+        </div>
+        <ul>
+          <li>Guided Visualization session</li>
+          <li>10 min soft tissue work</li>
+          <li>Magnesium supplement</li>
+          <li>Phone away 30 min before sleep</li>
+        </ul>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">GAME DAY LOCKER ROOM</div>
+        </div>
+        <ul>
+          <li>Visualization session</li>
+          <li>Activation breathwork</li>
+          <li>Dynamic warm-up sequence</li>
+        </ul>
+      </div>
+      
+      <div class="info-box">
+        <h3>MICRO-SESSIONS (10-15 MIN)</h3>
+        <p style="margin-bottom: 10px;">Quick work you can do at home or in the AT room:</p>
+        <ul>
+          <li><strong>AM:</strong> Tib raises + banded ankle 1-2 rounds</li>
+          <li><strong>PM:</strong> 90/90 hips + soft tissue calves</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bulletproofing Section -->
+  <section id="bulletproofing" class="section">
+    <div class="card">
+      <h2 class="card-title">BULLETPROOFING BLOCKS</h2>
+      <p style="margin-bottom: 20px; color: var(--text-gray);">Pick 1 block per day (~15 min). Built specifically for ankles, calves, and hip IR/ER.</p>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">ANKLE DF + CALVES</div>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Banded ankle mobs</span>
+          <span class="exercise-details">2×1 min/side</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Tibialis raises</span>
+          <span class="exercise-details">3×15</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Standing bent-knee soleus raises</span>
+          <span class="exercise-details">3×15</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Calf iso holds toes-up</span>
+          <span class="exercise-details">30-45s</span>
+        </div>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">ADDUCTORS + HIP IR/ER</div>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Adductor rock-backs</span>
+          <span class="exercise-details">2×12/side</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">90/90 switches</span>
+          <span class="exercise-details">2×10</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Copenhagen plank</span>
+          <span class="exercise-details">3×20s/side</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Cossack squat to box</span>
+          <span class="exercise-details">2×8/side slow</span>
+        </div>
+      </div>
+      
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-title">FOOT/ARCH + BALANCE</div>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Short-foot holds</span>
+          <span class="exercise-details">3×30s</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Single-leg balance eyes-front</span>
+          <span class="exercise-details">3×30s/side</span>
+        </div>
+        <div class="exercise-item">
+          <span class="exercise-name">Backward sled drags</span>
+          <span class="exercise-details">4×20-30 yd light</span>
+        </div>
+      </div>
+      
+      <div class="info-box" style="margin-top: 30px;">
+        <h3>LOW-FATIGUE PLYOS</h3>
+        <p style="margin-bottom: 10px; color: var(--text-gray);">Only on Game-2 if ankles feel great:</p>
+        <ul>
+          <li>Line pogos 2×10s</li>
+          <li>Ankling 2×10 yd</li>
+          <li>Box jump 4×3 (step-down only)</li>
+        </ul>
+        <p style="margin-top: 10px; color: var(--warning);">Stop immediately if any ankle pain.</p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title">WEEKLY CHECK-IN</h2>
+      <p style="margin-bottom: 20px; color: var(--text-gray);">Send this every Sunday via DM:</p>
+      
+      <div class="info-box">
+        <ol style="list-style: decimal; padding-left: 20px;">
+          <li>Team lift difficulty (1-10)</li>
+          <li>Soreness spots</li>
+          <li>Energy level (1-10)</li>
+          <li>Weight trend</li>
+          <li>Is technical work clicking?</li>
+        </ol>
+      </div>
+      
+      <div style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--accent-yellow) 100%); border-radius: 10px;">
+        <h3 style="color: var(--primary-black); font-family: 'Bebas Neue', sans-serif; font-size: 2em; letter-spacing: 2px; margin-bottom: 10px;">DM ME WITH ANY QUESTIONS!</h3>
+        <p style="color: var(--primary-black); font-weight: bold;">YouTube demos first • Stay consistent • Trust the process</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+function showSection(sectionId) {
+  // Hide all sections
+  const sections = document.querySelectorAll('.section');
+  sections.forEach(section => {
+    section.classList.remove('active');
+  });
+  
+  // Show selected section
+  document.getElementById(sectionId).classList.add('active');
+  
+  // Update nav tabs
+  const tabs = document.querySelectorAll('.nav-tab');
+  tabs.forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  // Find and activate the clicked tab
+  event.target.classList.add('active');
+  
+  // Scroll to top of content
+  window.scrollTo({ top: 160, behavior: 'smooth' });
+}
+
+// Add some interactivity
+document.addEventListener('DOMContentLoaded', function() {
+  // Animate stat cards on hover
+  const statCards = document.querySelectorAll('.stat-card');
+  statCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-5px)';
+      this.style.boxShadow = '0 10px 25px rgba(245, 200, 66, 0.2)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = '';
+    });
+  });
+});
+</script>
+
+</body>
+</html>
