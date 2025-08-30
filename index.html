@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Jack Clayton In-Season Program - VLVL Athletics</title>
+<title>Jack Clayton In-Season Program - Athletics</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
   
@@ -79,9 +79,25 @@
   }
   
   .logo {
-    width: 120px;
+    width: 150px;
     height: auto;
-    filter: drop-shadow(0 0 20px rgba(245, 200, 66, 0.3));
+  }
+  
+  .logo img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    filter: drop-shadow(0 0 20px var(--primary-yellow)) drop-shadow(0 0 40px var(--accent-yellow)) brightness(1.1);
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      filter: drop-shadow(0 0 20px var(--primary-yellow)) brightness(1.1);
+    }
+    to {
+      filter: drop-shadow(0 0 30px var(--primary-yellow)) drop-shadow(0 0 50px var(--accent-yellow)) brightness(1.2);
+    }
   }
   
   .athlete-info {
@@ -413,6 +429,10 @@
       text-align: center;
     }
     
+    .logo {
+      width: 120px;
+    }
+    
     .athlete-info {
       border-left: none;
       border-top: 2px solid var(--primary-yellow);
@@ -480,7 +500,9 @@
 <div class="header">
   <div class="header-content">
     <div class="logo-section">
-      <div class="logo" style="width: 120px; height: 60px; background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--accent-yellow) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 2em; color: var(--primary-black); letter-spacing: 3px; box-shadow: 0 0 20px var(--glow-yellow);">VLVL</div>
+      <div class="logo">
+        <img src="vlvl16x9.png" alt="Logo">
+      </div>
       <div class="athlete-info">
         <div class="athlete-name">JACK CLAYTON</div>
         <div class="athlete-details">16 YRS • HS OL • 223 LB • IN-SEASON PROGRAM</div>
@@ -520,7 +542,7 @@
         </div>
         <div class="stat-card">
           <div class="stat-value">16</div>
-          <div class="stat-label">Age</div>
+          <div class="stat-label">Age (Years)</div>
         </div>
         <div class="stat-card">
           <div class="stat-value">HS OL</div>
@@ -1122,7 +1144,7 @@
   <!-- Daily Flow Section -->
   <section id="daily-flow" class="section">
     <div class="card">
-      <h2 class="card-title">VLV DAILY FLOW</h2>
+      <h2 class="card-title">DAILY FLOW</h2>
       <p style="margin-bottom: 20px; color: var(--text-gray);">Follow this routine every single day for optimal results:</p>
       
       <div class="day-card">
@@ -1130,8 +1152,8 @@
           <div class="day-title">PRE-PRACTICE (30 MIN)</div>
         </div>
         <ul>
-          <li>VLV Breathwork app session</li>
-          <li>VLV Daily Vault review</li>
+          <li>Breathwork app session</li>
+          <li>Daily Vault review</li>
           <li>Focus on 1-2 technical cues for the day</li>
         </ul>
       </div>
@@ -1141,7 +1163,7 @@
           <div class="day-title">POST-PRACTICE (60 MIN WINDOW)</div>
         </div>
         <ul>
-          <li>VLV OL Drills 15 min (pick 2 from Library)</li>
+          <li>OL Drills 15 min (pick 2 from Library)</li>
           <li>Protein shake within 30 minutes</li>
           <li>Easy carbs for recovery</li>
           <li>Breathwork + mobility only (no heavy lifting)</li>
